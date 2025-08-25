@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+scikit-learn
+requests
+openpyxl
+langchain
+faiss-cpu
+sentence-transformers
+flask
