@@ -89,7 +89,7 @@ def send_teams_notification(user_email, user_name):
             "summary": "New User Login",
             "themeColor": "D70000",
             "sections": [{
-                "activityTitle": "SKU Classification System - New Login",
+                "activityTitle": "PRISM Classification System - New Login",
                 "activitySubtitle": f"User: {user_name} ({user_email})",
                 "facts": [
                     {"name": "Email", "value": user_email},
@@ -113,7 +113,7 @@ def validate_email(email):
 
 def login_page():
     """Display login page"""
-    st.title("🔐 SKU Classification System - Login")
+    st.title("🔐 PRISM Classification System - Login")
     st.markdown("---")
     
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -1469,7 +1469,7 @@ def single_sku_tab(df, df_rules, vectorizer, tfidf_matrix):
         # Send Teams notification
         try:
             from teams_config import send_streamlit_notification
-            send_streamlit_notification(sku_input, name_input, "Single SKU Classification")
+            send_streamlit_notification(sku_input, name_input, "PRISM Classification")
         except:
             pass
         
@@ -1636,7 +1636,7 @@ def bulk_processing_tab(df, vectorizer, tfidf_matrix):
 # ===================== MAIN APPLICATION =====================
 
 def analytics_dashboard():
-    """Display analytics dashboard"""
+    """Display User dashboard"""
     st.header("📈 Feedback Analytics Dashboard")
     
     feedback_df = load_feedback_data()
@@ -1689,7 +1689,7 @@ def analytics_dashboard():
 
 def main():
     st.set_page_config(
-        page_title="SKU Classification System",
+        page_title="PRISM Classification System",
         page_icon="🤖",
         layout="wide"
     )
@@ -1707,9 +1707,9 @@ def main():
     """, unsafe_allow_html=True)
 
     # Welcome message
-    st.markdown("<h1 style='color:#D70000;'>🤖 SKU Classification System</h1>", unsafe_allow_html=True)
-    st.markdown("<h4 style='color:#444;'>Welcome to the Thermo Fisher SKU AI Classifier!</h4>", unsafe_allow_html=True)
-    st.info("Quick Start: Use the tabs below to classify a single SKU, process bulk files, or view analytics.")
+    st.markdown("<h1 style='color:#D70000;'>🤖 PRISM Classification System</h1>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#444;'>Welcome to the Thermo Fisher <span style='color:red;'>P</span>roduct <span style='color:red;'>R</span>eporting <span style='color:red;'>I</span>ntegrated <span style='color:red;'>S</span>KU <span style='color:red;'>M</span>anagement Classifier!</h4>", unsafe_allow_html=True)
+    st.info("Quick Start: Use the tabs below to classify a single SKU, process bulk files, or User Activity.")
 
     # Initialize session state
     init_session_state()
@@ -1772,14 +1772,14 @@ def main():
 
     # Tabs with icons
     tab1, tab3, tab4 = st.tabs([
-        "🧠 RAG Based Prediction",
-        "📂 Bulk Classification", 
-        "📈 Analytics Dashboard"
+        "🧠 Single SKU classification",
+        "📂 Bulk SKU Classification", 
+        "📈 User Activity"
     ])
 
     with tab1:
-        st.markdown("<h3 style='color:#0076D7;'>🧠 RAG Based Prediction</h3>", unsafe_allow_html=True)
-        st.caption("Enter SKU details below to get RAG-powered classification with feedback options.")
+        st.markdown("<h3 style='color:#0076D7;'>🧠 Single SKU Classification</h3>", unsafe_allow_html=True)
+        st.caption("Enter SKU details below to get SKU classification with feedback options.")
         
         # Store results in session state to persist after feedback clicks
         if 'llm_search_results' not in st.session_state:
@@ -2017,7 +2017,7 @@ def main():
         bulk_processing_tab(df, st.session_state.vectorizer, st.session_state.tfidf_matrix)
 
     with tab4:
-        st.markdown("<h3 style='color:#0076D7;'>📈 Analytics Dashboard</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#0076D7;'>📈 User Activity</h3>", unsafe_allow_html=True)
         st.caption("View feedback analytics and model performance.")
         analytics_dashboard()
 

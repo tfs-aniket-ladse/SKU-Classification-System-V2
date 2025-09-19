@@ -1,0 +1,6 @@
+{
+  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "rows": 11197,
+  "dim": 384,
+  "backend": "faiss"
+}
